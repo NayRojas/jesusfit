@@ -36,15 +36,21 @@ const plans = [
 const testimonials = [
   {
     name: 'Carla M.',
-    quote: 'Nunca habia sido tan constante. En JesusFit entreno feliz y con resultados.'
+    quote: 'Nunca habia sido tan constante. En JesusFit entreno feliz y con resultados.',
+    photo:
+      'https://images.unsplash.com/photo-1581579188871-45ea61f2a1fd?auto=format&fit=crop&w=500&q=80'
   },
   {
     name: 'David R.',
-    quote: 'La energia del equipo te empuja a no rendirte. Se siente como familia.'
+    quote: 'La energia del equipo te empuja a no rendirte. Se siente como familia.',
+    photo:
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80'
   },
   {
     name: 'Luisa P.',
-    quote: 'Baje medidas y subi confianza. Todo con una rutina que si puedo sostener.'
+    quote: 'Baje medidas y subi confianza. Todo con una rutina que si puedo sostener.',
+    photo:
+      'https://images.unsplash.com/photo-1542206395-9feb3edaa68d?auto=format&fit=crop&w=500&q=80'
   }
 ];
 
@@ -66,6 +72,7 @@ const heroSlides = [
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const whatsappLink = 'https://wa.me/51915350883?text=Hola%20JesusFit%2C%20quiero%20informacion';
+  const tiktokLink = 'https://www.tiktok.com/@jesusfit';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -177,18 +184,38 @@ function App() {
 
       <main>
         <section id="beneficios" className="section">
-          <div className="section-head reveal">
+          <div className="section-head section-head-spotlight reveal">
             <p className="section-kicker">Por que elegirnos</p>
             <h2>Lo que hace diferente a JesusFit</h2>
+            <p className="section-lead">
+              Entrenas con metodologia clara, acompanamiento humano y una comunidad que te
+              levanta todos los dias.
+            </p>
           </div>
 
           <div className="grid benefits-grid">
-            {benefits.map((item) => (
-              <article key={item.title} className="card reveal">
+            {benefits.map((item, index) => (
+              <article key={item.title} className="card benefit-card reveal">
+                <p className="benefit-badge">0{index + 1}</p>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
             ))}
+          </div>
+
+          <div className="benefits-stats reveal" aria-label="Resultados de la comunidad">
+            <article>
+              <p className="stat-number">+1,200</p>
+              <p className="stat-label">alumnos activos</p>
+            </article>
+            <article>
+              <p className="stat-number">97%</p>
+              <p className="stat-label">constancia en 90 dias</p>
+            </article>
+            <article>
+              <p className="stat-number">4.9/5</p>
+              <p className="stat-label">valoracion promedio</p>
+            </article>
           </div>
         </section>
 
@@ -225,6 +252,7 @@ function App() {
           <div className="grid testimonials-grid">
             {testimonials.map((testimony) => (
               <article key={testimony.name} className="card testimonial reveal">
+                <img src={testimony.photo} alt={`Foto de ${testimony.name}`} className="testimonial-photo" />
                 <p>"{testimony.quote}"</p>
                 <h3>{testimony.name}</h3>
               </article>
@@ -238,11 +266,16 @@ function App() {
         <p>
           Reserva tu clase de prueba y comienza a entrenar con JesusFit y su gente bella.
         </p>
-        <a className="btn btn-main" href="mailto:contacto@jesusfit.com">
-          Contactar por correo
-        </a>
         <a className="btn btn-whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">
           Escribir por WhatsApp
+        </a>
+        <a className="social-link" href={tiktokLink} target="_blank" rel="noreferrer">
+          <span className="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M15.3 2v12.1a3.4 3.4 0 1 1-2.4-3.2V8.4a7 7 0 1 0 5.2 6.7V8.2c1.2.9 2.6 1.4 4 1.5V7.3c-2-.3-3.7-1.7-4.4-3.5L17.3 2h-2z" />
+            </svg>
+          </span>
+          Siguenos en TikTok
         </a>
       </section>
 
