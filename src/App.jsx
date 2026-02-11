@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const benefits = [
   {
@@ -48,7 +48,25 @@ const testimonials = [
   }
 ];
 
+const heroSlides = [
+  {
+    src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Mujer entrenando con pesas en un gimnasio'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Grupo realizando entrenamiento funcional'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Hombre haciendo ejercicio intenso con cuerda'
+  }
+];
+
 function App() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const whatsappLink = 'https://wa.me/51915350883?text=Hola%20JesusFit%2C%20quiero%20informacion';
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,6 +86,22 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
   return (
     <div className="site-wrapper">
       <header className="hero">
@@ -78,23 +112,62 @@ function App() {
           </a>
         </nav>
 
-        <div className="hero-content reveal">
-          <p className="tag">Entrena con actitud</p>
-          <h1>
-            JesusFit
-            <span>Y su gente bella</span>
-          </h1>
-          <p className="hero-text">
-            Un espacio para transformar tu cuerpo y tu mentalidad con entrenamientos guiados,
-            buena vibra y una comunidad que te impulsa.
-          </p>
-          <div className="hero-actions">
-            <a href="#planes" className="btn btn-main">
-              Ver planes
-            </a>
-            <a href="#beneficios" className="btn btn-ghost">
-              Conocer mas
-            </a>
+        <div className="hero-layout">
+          <div className="hero-content reveal">
+            <p className="tag">Entrena con actitud</p>
+            <h1>
+              JesusFit
+              <span>Y su gente bella</span>
+            </h1>
+            <p className="hero-text">
+              Un espacio para transformar tu cuerpo y tu mentalidad con entrenamientos guiados,
+              buena vibra y una comunidad que te impulsa.
+            </p>
+            <div className="hero-actions">
+              <a href="#planes" className="btn btn-main">
+                Ver planes
+              </a>
+              <a href="#beneficios" className="btn btn-ghost">
+                Conocer mas
+              </a>
+              <a href={whatsappLink} className="btn btn-whatsapp" target="_blank" rel="noreferrer">
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-carousel reveal" aria-label="Galeria de entrenamientos">
+            <div className="hero-carousel-track">
+              {heroSlides.map((slide, index) => (
+                <img
+                  key={slide.src}
+                  src={slide.src}
+                  alt={slide.alt}
+                  className={`hero-image ${index === currentSlide ? 'active' : ''}`}
+                />
+              ))}
+            </div>
+
+            <div className="carousel-controls">
+              <button type="button" className="carousel-btn" onClick={goToPrev} aria-label="Imagen anterior">
+                ←
+              </button>
+              <button type="button" className="carousel-btn" onClick={goToNext} aria-label="Imagen siguiente">
+                →
+              </button>
+            </div>
+
+            <div className="carousel-dots">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.alt}
+                  type="button"
+                  className={`dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                  aria-label={`Ir a imagen ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
@@ -167,6 +240,9 @@ function App() {
         </p>
         <a className="btn btn-main" href="mailto:contacto@jesusfit.com">
           Contactar por correo
+        </a>
+        <a className="btn btn-whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">
+          Escribir por WhatsApp
         </a>
       </section>
 
