@@ -17,19 +17,14 @@ const benefits = [
 
 const plans = [
   {
-    name: 'Inicio Activo',
-    price: '$19/mes',
-    items: ['3 clases en vivo por semana', 'Plan base de movilidad', 'Grupo de soporte']
+    name: 'Cardio HIIT',
+    price: 'S/ 5 por clase',
+    items: ['Lunes, miercoles y viernes', 'Sesiones intensas de cardio HIIT', 'Quema grasa y mejora tu resistencia']
   },
   {
-    name: 'Fuerza Total',
-    price: '$39/mes',
-    items: ['5 clases en vivo por semana', 'Plan de fuerza y cardio', 'Seguimiento de progreso']
-  },
-  {
-    name: 'Elite JesusFit',
-    price: '$59/mes',
-    items: ['Entrenamiento personalizado', 'Nutricion practica', 'Mentoria mensual 1:1']
+    name: 'Fuerza',
+    price: 'S/ 6 por clase',
+    items: ['Martes y jueves', 'Entrenamiento de fuerza progresiva', 'Tonifica y gana potencia muscular']
   }
 ];
 
@@ -222,7 +217,7 @@ function App() {
         <section id="planes" className="section section-alt">
           <div className="section-head reveal">
             <p className="section-kicker">Programas</p>
-            <h2>Elige tu plan y activa tu mejor version</h2>
+            <h2>Elige tu tipo de entrenamiento</h2>
           </div>
 
           <div className="grid plans-grid">
