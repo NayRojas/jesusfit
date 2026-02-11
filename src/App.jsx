@@ -82,7 +82,7 @@ function App() {
           <p className="tag">Entrena con actitud</p>
           <h1>
             JesusFit
-            <span>su gente bella</span>
+            <span>Y su gente bella</span>
           </h1>
           <p className="hero-text">
             Un espacio para transformar tu cuerpo y tu mentalidad con entrenamientos guiados,
@@ -171,7 +171,7 @@ function App() {
       </section>
 
       <footer className="footer">
-        <p>JesusFit 2026 | Su gente bella</p>
+        <p>JesusFit 2026 | Y su gente bella</p>
       </footer>
     </div>
   );
