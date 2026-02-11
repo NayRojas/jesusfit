@@ -1,14 +1,14 @@
 :root {
-  --bg: #fff8ef;
-  --bg-alt: #ffe7d2;
-  --text: #2b1d0f;
-  --muted: #5e4a35;
-  --main: #f15a24;
-  --main-dark: #ca420f;
-  --soft: #ffd2a6;
-  --card: #fffdf8;
+  --bg: #0a0f1f;
+  --bg-alt: #121a2f;
+  --text: #f4f8ff;
+  --muted: #b6c3dc;
+  --main: #24c8ff;
+  --main-dark: #0093c9;
+  --accent: #c4ff32;
+  --card: #111a31;
   --radius: 22px;
-  --shadow: 0 18px 45px rgba(159, 71, 16, 0.18);
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -26,8 +26,8 @@ body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 10% 0%, #ffd29f 0, transparent 42%),
-    radial-gradient(circle at 100% 20%, #ffc8a8 0, transparent 40%),
+    radial-gradient(circle at 8% 0%, rgba(36, 200, 255, 0.24) 0, transparent 42%),
+    radial-gradient(circle at 98% 8%, rgba(196, 255, 50, 0.18) 0, transparent 35%),
     var(--bg);
 }
 
@@ -57,15 +57,22 @@ body {
 .nav-cta {
   text-decoration: none;
   color: var(--text);
-  border: 2px solid rgba(43, 29, 15, 0.2);
+  border: 2px solid rgba(244, 248, 255, 0.25);
   border-radius: 999px;
   padding: 0.55rem 1rem;
   font-weight: 700;
 }
 
+.hero-layout {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+}
+
 .hero-content {
   max-width: 700px;
-  margin-top: 4.5rem;
 }
 
 .tag,
@@ -73,7 +80,7 @@ body {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--main-dark);
+  color: var(--main);
   font-weight: 700;
   font-size: 0.78rem;
 }
@@ -87,7 +94,7 @@ body {
 
 .hero h1 span {
   display: block;
-  color: var(--main);
+  color: var(--accent);
   font-size: clamp(2.1rem, 8vw, 4.2rem);
 }
 
@@ -119,19 +126,108 @@ body {
 }
 
 .btn-main {
-  color: #fff;
-  background-color: var(--main);
-  box-shadow: 0 10px 22px rgba(241, 90, 36, 0.35);
+  color: #091126;
+  background-color: var(--accent);
+  box-shadow: 0 10px 22px rgba(196, 255, 50, 0.25);
 }
 
 .btn-main:hover {
-  background-color: var(--main-dark);
+  background-color: #a9e700;
 }
 
 .btn-ghost {
   color: var(--text);
-  background-color: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(43, 29, 15, 0.18);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(244, 248, 255, 0.2);
+}
+
+.btn-whatsapp {
+  color: #071524;
+  background-color: #25d366;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.28);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1fb65a;
+}
+
+.hero-carousel {
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid rgba(244, 248, 255, 0.16);
+  background: #090f1f;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero-carousel-track {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  min-height: 350px;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.hero-image.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.carousel-btn {
+  border: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: rgba(9, 17, 38, 0.7);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.carousel-btn:hover {
+  background: rgba(9, 17, 38, 0.92);
+}
+
+.carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.dot {
+  border: 0;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: rgba(244, 248, 255, 0.45);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--accent);
 }
 
 .hero-shape {
@@ -143,9 +239,9 @@ body {
 .hero-shape-1 {
   width: min(42vw, 520px);
   height: min(42vw, 520px);
-  right: -120px;
+  right: -140px;
   top: 80px;
-  background: linear-gradient(160deg, rgba(241, 90, 36, 0.25), rgba(255, 210, 166, 0.15));
+  background: linear-gradient(160deg, rgba(36, 200, 255, 0.22), rgba(196, 255, 50, 0.14));
   animation: drift 10s ease-in-out infinite;
 }
 
@@ -154,7 +250,7 @@ body {
   height: min(30vw, 360px);
   right: 22%;
   top: 18px;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), rgba(255, 199, 142, 0.35));
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.22), rgba(36, 200, 255, 0.25));
   animation: drift 8s ease-in-out infinite reverse;
 }
 
@@ -163,7 +259,7 @@ body {
 }
 
 .section-alt {
-  background: linear-gradient(180deg, rgba(255, 236, 216, 0.45), rgba(255, 236, 216, 0));
+  background: linear-gradient(180deg, rgba(21, 31, 56, 0.85), rgba(21, 31, 56, 0));
 }
 
 .section-head h2 {
@@ -189,7 +285,7 @@ body {
 
 .card {
   background-color: var(--card);
-  border: 1px solid rgba(64, 42, 21, 0.08);
+  border: 1px solid rgba(244, 248, 255, 0.1);
   border-radius: var(--radius);
   padding: 1.2rem;
   box-shadow: var(--shadow);
@@ -206,7 +302,7 @@ body {
 
 .plan-card .price {
   margin: 0.4rem 0 0.8rem;
-  color: var(--main-dark);
+  color: var(--accent);
   font-weight: 700;
   font-size: 1.2rem;
 }
@@ -232,8 +328,8 @@ body {
 .cta {
   margin: 0 clamp(1rem, 3vw, 2.5rem) 2.8rem;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, #ff9c5d, #f15a24);
-  color: #fff;
+  background: linear-gradient(135deg, #1ac2ff, #0a73b6);
+  color: #ebf7ff;
   text-align: center;
   box-shadow: var(--shadow);
 }
@@ -244,15 +340,19 @@ body {
 }
 
 .cta p {
-  color: rgba(255, 255, 255, 0.93);
+  color: rgba(235, 247, 255, 0.92);
   margin: 0.7rem auto 1.3rem;
   max-width: 58ch;
 }
 
 .cta .btn-main {
-  background-color: #fff;
-  color: var(--main-dark);
+  background-color: var(--accent);
+  color: #08122a;
   box-shadow: none;
+}
+
+.cta .btn-whatsapp {
+  margin-top: 0.6rem;
 }
 
 .footer {
@@ -288,8 +388,13 @@ body {
     padding-bottom: 2rem;
   }
 
+  .hero-layout {
+    margin-top: 2.2rem;
+    grid-template-columns: 1fr;
+  }
+
   .hero-content {
-    margin-top: 2.6rem;
+    margin-top: 0;
   }
 
   .hero-actions {
@@ -304,5 +409,9 @@ body {
   .hero-shape-1,
   .hero-shape-2 {
     opacity: 0.45;
+  }
+
+  .hero-carousel-track {
+    min-height: 300px;
   }
 }
